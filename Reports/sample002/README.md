@@ -1,4 +1,4 @@
-# Sample002 - Brand Impersonation (O Boticário)
+# Brand Impersonation (O Boticário)
 
 ## Executive Summary
 
@@ -67,7 +67,7 @@ The infrastructure is associated with Cloudflare IP addresses and recently issue
 
 VirusTotal lists historical communicating files related to the observed infrastructure. These artifacts were reviewed but are not considered direct Indicators of Compromise for this phishing campaign.
 
-![Communicating Files](../../screenshots/sample002/VirusTotalCommunicatingFiles.png)
+![Communicating Files](../../screenshots/sample002/VirusTotalCommuncatingFiles.png)
 
 ---
 
