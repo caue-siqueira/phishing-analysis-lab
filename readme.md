@@ -57,7 +57,7 @@ Incident Report
 
 | Sample | Brand | Threat | Severity | Report |
 |:------:|--------|---------|:--------:|:------:|
-| 001 | Banco Itaú | Brand Impersonation | 🔴 High | [View](Sample001/README.md) |
+| 001 | Banco Itaú | Brand Impersonation | 🔴 High | [View](Reports/sample001/README.md) |
 | 002 | Coming Soon | - | - | - |
 | 003 | Coming Soon | - | - | - |
 | 004 | Coming Soon | - | - | - |
