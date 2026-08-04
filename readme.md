@@ -58,7 +58,7 @@ Incident Report
 | Sample | Brand | Threat | Severity | Report |
 |:------:|--------|---------|:--------:|:------:|
 | 001 | Banco Itaú | Brand Impersonation | 🔴 High | [View](Reports/sample001/README.md) |
-| 002 | Coming Soon | - | - | - |
+| 002 | O Boticário | Brand Impersonation | 🔴 High  | [View](Reports/sample002/README.md) |
 | 003 | Coming Soon | - | - | - |
 | 004 | Coming Soon | - | - | - |
 | 005 | Coming Soon | - | - | - |
