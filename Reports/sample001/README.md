@@ -1,4 +1,4 @@
-# Sample 001 – bancoltau.com
+# bancoltau.com
 
 ## Executive Summary
 
