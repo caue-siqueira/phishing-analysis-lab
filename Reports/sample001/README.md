@@ -36,7 +36,7 @@ This investigation analyzed a phishing website impersonating **Banco Itaú**. Th
 
 ### Evidence
 
-![PRINT - PhishTank](../screnshots/Sample001/PHISHTANK.png)
+![PRINT - PhishTank](../../screenshots/Sample001/PHISHTANK.png)
 
 ---
 
@@ -46,7 +46,7 @@ The website presents itself as the official Banco Itaú authentication portal an
 
 ### Evidence
 
-**[PRINT - Página solicitando CPF]**
+**![PRINT - Página solicitando CPF](../../screenshots/Sample001/ANY.RUNFormCPF.jpeg)**
 
 ---
 
@@ -66,7 +66,7 @@ The URL/domain was submitted to VirusTotal for reputation analysis.
 
 ### Evidence
 
-**[PRINT - VirusTotal Detection]**
+**![PRINT - VirusTotal Detection](../../screenshots/Sample001/VIRUSTOTAL.jpeg)**
 
 ---
 
