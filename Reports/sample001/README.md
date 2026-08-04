@@ -82,7 +82,7 @@ The URL/domain was submitted to VirusTotal for reputation analysis.
 
 ### Evidence
 
-**[PRINT - VirusTotal Details]**
+![PRINT - VirusTotal Details](../../screenshots/Sample001/VIRUSTOTAL2.jpeg)**
 
 ---
 
@@ -92,7 +92,7 @@ Related infrastructure and associated objects identified by VirusTotal.
 
 ### Evidence
 
-**[PRINT - VirusTotal Relations]**
+**[PRINT - VirusTotal Relations](../../screenshots/Sample001/VIRUSTOTALRELATIONS.jpeg)**
 
 ---
 
@@ -116,7 +116,7 @@ The domain was recently registered, which is consistent with phishing infrastruc
 
 ### Evidence
 
-**[PRINT - WHOIS]**
+**![PRINT - WHOIS](../../screenshots/Sample001/WHOIS.jpeg)**
 
 ---
 
@@ -130,7 +130,7 @@ The domain was recently registered, which is consistent with phishing infrastruc
 
 ### Evidence
 
-**[PRINT - MXToolbox DNS Lookup]**
+**"![PRINT - MXToolbox DNS Lookup](../../screenshots/Sample001/dnsMXTOOLBOX.png)**
 
 ---
 
@@ -145,7 +145,7 @@ The domain was recently registered, which is consistent with phishing infrastruc
 
 ### Evidence
 
-**[PRINT - MXToolbox MX Lookup]**
+**![PRINT - MXToolbox MX Lookup](../../screenshots/Sample001/MXTOOLBOX.png)**
 
 ---
 
@@ -166,7 +166,7 @@ Google Safe Browsing classified the domain as **Malicious**.
 
 ### Evidence
 
-**[PRINT - URLScan Summary]**
+**![PRINT - URLScan Summary](../../screenshots/Sample001/URLSCAN.jpeg)**
 
 ---
 
@@ -179,7 +179,7 @@ Observed connections:
 
 ### Evidence
 
-**[PRINT - URLScan Network]**
+**![PRINT - URLScan Network](../../screenshots/Sample001/URLSCAN_NETWORK.png)**
 
 ---
 
@@ -198,7 +198,7 @@ The presence of a valid TLS certificate does not indicate legitimacy. Attackers 
 
 ### Evidence
 
-**[PRINT - Certificate]**
+**![PRINT - Certificate](../../screenshots/Sample001/CERTIFICATE.png)**
 
 ---
 
@@ -210,7 +210,7 @@ Behavior observed during execution.
 
 ### Evidence
 
-**[PRINT - ANY.RUN Verdict]**
+**![PRINT - ANY.RUN Verdict](../../screenshots/Sample001/ANY.RUN.png)**
 
 ---
 
@@ -220,7 +220,7 @@ Processes created during execution.
 
 ### Evidence
 
-**[PRINT - ANY.RUN Process Tree]**
+**![PRINT - ANY.RUN Process Tree](../../screenshots/Sample001/ANYRUNPROCESSTREE.png)**
 
 ---
 
@@ -230,7 +230,7 @@ Connections established by the sample.
 
 ### Evidence
 
-**[PRINT - ANY.RUN Network]**
+**![PRINT - ANY.RUN Network](../../screenshots/Sample001/ANYRUNNETWORK.png)**
 
 ---
 
@@ -240,7 +240,9 @@ Observed HTTP/HTTPS requests.
 
 ### Evidence
 
-**[PRINT - ANY.RUN HTTP Requests]**
+**![PRINT - ANY.RUN HTTP Requests](../../screenshots/Sample001/ANYRUNHTTPREQUEST.png)** 
+**![PRINT - ANY.RUN HTTP Requests2](../../screenshots/Sample001/ANYRUNHTTPREQUEST2.png)** 
+
 
 ---
 
@@ -250,15 +252,10 @@ Observed DNS queries.
 
 ### Evidence
 
-**[PRINT - ANY.RUN DNS Requests]**
+**![PRINT - ANY.RUN DNS Requests](../../screenshots/Sample001/ANYRUNDNSREQUEST.png)**
 
 ---
 
-## Screenshot
-
-### Evidence
-
-**[PRINT - ANY.RUN Screenshot]**
 
 ---
 
