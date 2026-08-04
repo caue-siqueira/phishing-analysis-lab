@@ -2,106 +2,87 @@
 
 ## Executive Summary
 
-This investigation analyzed a phishing website impersonating **Banco Itaú**. The objective was to identify malicious infrastructure, extract Indicators of Compromise (IOCs), classify the threat, and document the findings following a SOC analyst workflow.
+This investigation analyzes a phishing website impersonating **Banco Itaú**, one of Brazil's largest financial institutions. The campaign uses a typosquatting domain to deceive users into providing sensitive personal information through a fraudulent banking portal. Technical analysis confirmed recently deployed infrastructure protected by Cloudflare, a valid TLS certificate, and behavior consistent with credential harvesting operations.
 
 ---
 
 # Sample Information
 
 | Field | Value |
-|--------|-------|
-| Sample ID | 001 |
-| Source | PhishTank |
+|-------|--------|
+| Sample ID | Sample001 |
 | Threat Type | Brand Impersonation |
-| Severity | 🔴 High |
+| Target Brand | Banco Itaú |
+| Domain | bancoltau.com |
+| Protocol | HTTPS |
+| Status | Active during analysis |
+| Severity | High |
 | Confidence | High |
-| Status | Malicious |
-| Analysis Date | 2026-08-04 |
 
 ---
 
-# Target Brand
+# Analysis Timeline
 
-**Banco Itaú**
+The investigation followed a structured workflow commonly used by Security Operations Center (SOC) analysts to validate the phishing infrastructure, collect technical evidence, extract Indicators of Compromise (IOCs), and assess the overall threat.
+
+| Step | Activity | Status |
+|------|----------|:------:|
+| 1 | Identified the phishing URL through PhishTank | ✅ |
+| 2 | Captured the phishing landing page and user interaction flow | ✅ |
+| 3 | Analyzed domain reputation using VirusTotal | ✅ |
+| 4 | Retrieved WHOIS registration information | ✅ |
+| 5 | Performed DNS and certificate validation using MXToolbox | ✅ |
+| 6 | Reviewed TLS certificate details | ✅ |
+| 7 | Executed behavioral analysis using ANY.RUN | ✅ |
+| 8 | Reviewed URLScan network activity | ✅ |
+| 9 | Extracted Indicators of Compromise (IOCs) | ✅ |
+| 10 | Mapped observed activity to the MITRE ATT&CK Framework | ✅ |
+| 11 | Assessed the threat and documented findings | ✅ |
 
 ---
 
-# PhishTank
+# Executive Overview
 
-| Field | Value |
-|--------|-------|
-| Status | Online |
-| Verification | Unknown |
-| Sample ID | 9496648 |
-
-### Evidence
-
-![PRINT - PhishTank](../../screenshots/Sample001/PHISHTANK.png)
+The investigated domain **bancoltau.com** was created to impersonate Banco Itaú by exploiting a typosquatting technique in which the uppercase letter **"I"** is replaced with the lowercase letter **"l"**, making the domain visually similar to the legitimate banking website. The phishing page requests the victim's CPF as the initial authentication factor before advancing through additional stages designed to collect sensitive information. Infrastructure analysis identified a recently registered domain protected by Cloudflare, a valid TLS certificate issued by Google Trust Services, and network activity consistent with a credential harvesting phishing kit.
 
 ---
 
 # Landing Page Analysis
 
-The website presents itself as the official Banco Itaú authentication portal and requests the victim's CPF as the initial authentication factor, indicating an attempt to harvest personally identifiable information (PII).
+The phishing website closely imitates Banco Itaú's authentication portal and prompts users to provide their CPF before continuing the authentication process. The visual design and interaction flow closely resemble the legitimate banking website, increasing the likelihood of successful social engineering.
 
-### Evidence
+### Landing Page
 
-**![PRINT - Página solicitando CPF](../../screenshots/Sample001/ANY.RUNFormCPF.jpeg)**
-
----
-
-# URL
-
-```
-https://bancoltau.com/
-```
+![Landing Page](../../screenshots/Sample001/ANYRUN.png)
 
 ---
 
 # VirusTotal Analysis
 
-## Detection
+VirusTotal identified the domain as malicious and provided infrastructure information including IP addresses, ASN, certificate details, and related infrastructure.
 
-The URL/domain was submitted to VirusTotal for reputation analysis.
+### Domain Overview
 
-### Evidence
+![VirusTotal Overview](../../screenshots/Sample001/VIRUSTOTAL.jpeg)
 
-**![PRINT - VirusTotal Detection](../../screenshots/Sample001/VIRUSTOTAL.jpeg)**
+### Infrastructure Details
 
----
+![VirusTotal Infrastructure](../../screenshots/Sample001/VIRUSTOTAL2.jpeg)
 
-## Details
+### Related Infrastructure
 
-| Field | Value |
-|--------|-------|
-| Domain | bancoltau.com |
-| IP Address | 104.21.14.173 |
-| ASN | AS13335 |
-| Organization | Cloudflare, Inc. |
-| Country | US |
-
-### Evidence
-
-![PRINT - VirusTotal Details](../../screenshots/Sample001/VIRUSTOTAL2.jpeg)**
-
----
-
-## Relations
-
-Related infrastructure and associated objects identified by VirusTotal.
-
-### Evidence
-
-**[PRINT - VirusTotal Relations](../../screenshots/Sample001/VIRUSTOTALRELATIONS.jpeg)**
+![VirusTotal Relations](../../screenshots/Sample001/VIRUSTOTALRELATIONS.png)
 
 ---
 
 # WHOIS Analysis
 
-| Field | Value |
-|--------|-------|
+WHOIS records indicate that the domain was recently registered, a characteristic frequently observed in phishing campaigns.
+
+| Property | Value |
+|-----------|--------|
 | Registrar | Cloudflare, Inc. |
-| Registration Date | 2026-07-28 |
+| Creation Date | 2026-07-28 |
 | Expiration Date | 2027-07-28 |
 | Status | clientTransferProhibited |
 
@@ -110,152 +91,86 @@ Related infrastructure and associated objects identified by VirusTotal.
 - bowen.ns.cloudflare.com
 - leah.ns.cloudflare.com
 
-### Observation
+### WHOIS Evidence
 
-The domain was recently registered, which is consistent with phishing infrastructure that typically has a short operational lifespan.
+![WHOIS](../../screenshots/Sample001/WHOIS.jpeg)
 
-### Evidence
+### Analyst Observation
 
-**![PRINT - WHOIS](../../screenshots/Sample001/WHOIS.jpeg)**
-
----
-
-# DNS Analysis (MXToolbox)
-
-| Item | Value |
-|------|-------|
-| DNS Resolution | Success |
-| Name Server | bowen.ns.cloudflare.com |
-| Name Server | leah.ns.cloudflare.com |
-
-### Evidence
-
-**"![PRINT - MXToolbox DNS Lookup](../../screenshots/Sample001/dnsMXTOOLBOX.png)**
+The recent registration date strongly suggests infrastructure created specifically for malicious activity.
 
 ---
 
-## Mail Infrastructure
+# DNS Analysis
 
-| Item | Status |
-|------|--------|
-| MX Record | |
-| SPF | |
-| DKIM | |
-| DMARC | |
+DNS analysis confirmed that the phishing website is protected behind Cloudflare infrastructure.
 
-### Evidence
+### MXToolbox DNS Lookup
 
-**![PRINT - MXToolbox MX Lookup](../../screenshots/Sample001/MXTOOLBOX.png)**
+![DNS Lookup](../../screenshots/Sample001/dnsMXTOOLBOX.png)
+
+### Mail Infrastructure
+
+![MXToolbox](../../screenshots/Sample001/MXTOOLBOX.png)
+
+---
+
+# TLS Certificate Analysis
+
+The phishing website presents a valid HTTPS certificate issued by Google Trust Services.
+
+| Property | Value |
+|-----------|--------|
+| Issuer | Google Trust Services (WE1) |
+| Valid From | 2026-07-28 |
+| Valid Until | 2026-10-26 |
+| HTTPS | Enabled |
+
+### Certificate
+
+![Certificate](../../screenshots/Sample001/CERTIFICATE.png)
+
+### Analyst Observation
+
+The presence of a valid TLS certificate should not be interpreted as proof of legitimacy. Threat actors frequently obtain trusted certificates to increase user confidence and avoid browser security warnings.
 
 ---
 
 # URLScan Analysis
 
-## Summary
+URLScan identified the phishing infrastructure, associated network communications, and contacted external services during page execution.
 
-| Field | Value |
-|--------|-------|
-| Main Domain | bancoltau.com |
-| Main IP | 172.67.160.25 |
-| HTTP Requests | 13 |
-| Contacted Domains | 3 |
-| Contacted IPs | 3 |
-| Verdict | No Classification |
+### URLScan Summary
 
-Google Safe Browsing classified the domain as **Malicious**.
+![URLScan Summary](../../screenshots/Sample001/URLSCAN.jpeg)
 
-### Evidence
+### Network Activity
 
-**![PRINT - URLScan Summary](../../screenshots/Sample001/URLSCAN.jpeg)**
+![URLScan Network](../../screenshots/Sample001/URLSCAN_NETWORK.png)
 
 ---
 
-## Network Activity
+# ANY.RUN Analysis
 
-Observed connections:
+Behavioral analysis confirmed active phishing behavior, including DNS resolution, HTTP requests, and user interaction with the fraudulent banking portal.
 
-- Cloudflare
-- Facebook infrastructure
+### Sandbox Overview
 
-### Evidence
+![ANY.RUN Overview](../../screenshots/Sample001/ANYRUN.png)
 
-**![PRINT - URLScan Network](../../screenshots/Sample001/URLSCAN_NETWORK.png)**
+### Process Tree
 
----
+![Process Tree](../../screenshots/Sample001/ANYRUNPROCESSTREE.png)
 
-# TLS Certificate
+### Network Connections
 
-| Field | Value |
-|--------|-------|
-| HTTPS | Enabled |
-| Certificate Issuer | Google Trust Services (WE1) |
-| Valid From | 2026-07-28 |
-| Valid Until | 2026-10-26 |
+![Network Connections](../../screenshots/Sample001/ANYRUNNETWORK.png)
 
-### Observation
+### HTTP Requests
 
-The presence of a valid TLS certificate does not indicate legitimacy. Attackers frequently use free certificates to increase user trust.
+![HTTP Request 1](../../screenshots/Sample001/ANYRUNHTTPREQUEST.png)
 
-### Evidence
-
-**![PRINT - Certificate](../../screenshots/Sample001/CERTIFICATE.png)**
-
----
-
-# ANY.RUN Dynamic Analysis
-
-## Sandbox Summary
-
-Behavior observed during execution.
-
-### Evidence
-
-**![PRINT - ANY.RUN Verdict](../../screenshots/Sample001/ANY.RUN.png)**
-
----
-
-## Process Tree
-
-Processes created during execution.
-
-### Evidence
-
-**![PRINT - ANY.RUN Process Tree](../../screenshots/Sample001/ANYRUNPROCESSTREE.png)**
-
----
-
-## Network Connections
-
-Connections established by the sample.
-
-### Evidence
-
-**![PRINT - ANY.RUN Network](../../screenshots/Sample001/ANYRUNNETWORK.png)**
-
----
-
-## HTTP Requests
-
-Observed HTTP/HTTPS requests.
-
-### Evidence
-
-**![PRINT - ANY.RUN HTTP Requests](../../screenshots/Sample001/ANYRUNHTTPREQUEST.png)** 
-**![PRINT - ANY.RUN HTTP Requests2](../../screenshots/Sample001/ANYRUNHTTPREQUEST2.png)** 
-
-
----
-
-## DNS Requests
-
-Observed DNS queries.
-
-### Evidence
-
-**![PRINT - ANY.RUN DNS Requests](../../screenshots/Sample001/ANYRUNDNSREQUEST.png)**
-
----
-
+![HTTP Request 2](../../screenshots/Sample001/ANYRUNHTTPREQUEST2.png)
 
 ---
 
@@ -263,45 +178,60 @@ Observed DNS queries.
 
 | Type | Value |
 |------|-------|
-| URL | https://bancoltau.com |
 | Domain | bancoltau.com |
+| URL | https://bancoltau.com |
 | IP Address | 104.21.14.173 |
 | ASN | AS13335 |
 | Registrar | Cloudflare, Inc. |
 | Name Server | bowen.ns.cloudflare.com |
 | Name Server | leah.ns.cloudflare.com |
+| TLS Issuer | Google Trust Services (WE1) |
+| Reverse Proxy | Cloudflare |
 
 ---
 
 # MITRE ATT&CK Mapping
 
-| Technique | ID |
-|-----------|----|
-| Phishing: Spearphishing Link | T1566.002 |
-| Masquerading | T1036 |
+| Tactic | Technique | Description |
+|---------|-----------|-------------|
+| Resource Development | T1583.001 | Acquire Infrastructure: Domains |
+| Resource Development | T1583.006 | Acquire Infrastructure: Web Services |
+| Initial Access | T1566 | Phishing |
+| Credential Access | T1056.001 | Web Portal Credential Collection |
 
 ---
 
 # Threat Assessment
 
-The analyzed domain impersonates Banco Itaú by using a deceptive domain name visually similar to the legitimate banking website.
+| Category | Assessment |
+|-----------|------------|
+| Severity | High |
+| Confidence | High |
+| Campaign Type | Brand Impersonation |
+| Objective | Credential Harvesting |
+| Infrastructure Age | Recently Registered |
 
-The domain was recently registered and hosted behind Cloudflare infrastructure. Google Safe Browsing classified the website as malicious.
+### Analyst Assessment
 
-The phishing page requests the victim's CPF as the first authentication factor, indicating an attempt to harvest sensitive personal information before collecting banking credentials.
-
-Based on the collected evidence, this campaign is classified as **High Severity** with **High Confidence**.
+The investigated domain employs typosquatting to impersonate Banco Itaú and collect personally identifiable information from victims. The infrastructure was recently registered, protected behind Cloudflare, and configured with a valid TLS certificate to increase credibility. Behavioral analysis confirmed communication patterns consistent with an active phishing kit. Based on the collected evidence, this campaign is classified as a high-confidence phishing operation targeting Banco Itaú customers.
 
 ---
 
 # Recommendations
 
-- Block the domain.
-- Block associated IP addresses.
-- Add the collected IOCs to the SIEM.
-- Configure DNS filtering.
-- Monitor for typosquatting domains targeting Banco Itaú.
-- Notify potentially affected users.
+## For End Users
+
+- Verify domain names before entering personal or banking information.
+- Access online banking services only through official channels.
+- Enable Multi-Factor Authentication (MFA).
+- Report suspicious websites to the appropriate security team.
+
+## For Security Teams
+
+- Block the identified domain and associated IP addresses.
+- Monitor DNS queries for the collected indicators.
+- Deploy SIEM detection rules for typosquatting domains targeting Banco Itaú.
+- Share collected IOCs with Threat Intelligence platforms.
 
 ---
 
@@ -309,7 +239,7 @@ Based on the collected evidence, this campaign is classified as **High Severity*
 
 - PhishTank
 - VirusTotal
-- URLScan
+- URLScan.io
 - WHOIS
 - MXToolbox
 - ANY.RUN
